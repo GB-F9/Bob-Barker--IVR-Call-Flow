@@ -957,6 +957,36 @@
                     '<strong>AI Features:</strong> Transcript and summary via API',
                     'Alternative: Use Boomi for machine-to-machine OAuth handling'
                 ]
+            },
+            'finance-agent-netsuite': {
+                title: 'Finance Agent + NetSuite',
+                description: 'Finance department agent receives the call with full NetSuite integration active.',
+                details: [
+                    'Agent staffed in Finance Queue',
+                    'Five9 Adapter panel displays in browser',
+                    'NetSuite ANI lookup automatically performed',
+                    'Customer record screen-popped (if single match)',
+                    'Multiple match hyperlinks displayed (if applicable)',
+                    'Agent can see caller came through Finance line',
+                    'Call logging happens automatically after call ends',
+                    'Agent has access to disposition codes',
+                    'Softphone controls active for call handling'
+                ]
+            },
+            'cs-agent-netsuite': {
+                title: 'CS Agent (Queue) + NetSuite',
+                description: 'Customer Service agent receives the call with NetSuite integration and queue context.',
+                details: [
+                    'Agent staffed in appropriate CS Queue (Place Order or Questions)',
+                    'Five9 Adapter panel displays in browser',
+                    'NetSuite ANI lookup automatically performed',
+                    'Customer record screen-popped (if single match)',
+                    'Agent can see which option caller selected (Press 2 or Press 3)',
+                    '<strong>Place Order Queue:</strong> Staffed by all CS agents',
+                    '<strong>Questions Queue:</strong> Staffed by experienced agents only',
+                    'Call logging happens automatically after call ends',
+                    'Selection info (Order/Questions) visible to agent for context'
+                ]
             }
         };
         
@@ -1048,6 +1078,8 @@
             }
             if (textContent.includes('temporary close') || textContent.includes('temp')) return 'temp-close';
             if (textContent.includes('8 am') || textContent.includes('eastern')) return 'business-hours';
+            if (textContent.includes('finance agent') && textContent.includes('netsuite')) return 'finance-agent-netsuite';
+            if (textContent.includes('cs agent') && textContent.includes('netsuite')) return 'cs-agent-netsuite';
             if (textContent.includes('finance queue')) return 'finance-queue';
             if (textContent.includes('place order')) return 'cs-queue-order';
             if (textContent.includes('cs questions') || textContent.includes('questions')) return 'cs-queue-questions';
